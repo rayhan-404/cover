@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Cover Page Generator</title>
 
-
     <link rel="manifest" href="https://cover-kappa-ten.vercel.app/icons/manifest.json">
     <meta name="theme-color" content="#A9EFC7">
     <link rel="icon" href="https://cover-kappa-ten.vercel.app/icons/favicon.png">
@@ -16,6 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
     <style>
         *,
         *::before,
@@ -25,35 +25,325 @@
             padding: 0;
         }
 
-        /* ── M3 COLOR TOKENS ─────────────────── */
+        /* ── EASE TOKENS ─────────────────────── */
         :root {
             --ease: cubic-bezier(0.2, 0, 0, 1);
             --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
             --t: 0.3s cubic-bezier(0.2, 0, 0, 1);
-
-            /* State layers */
             --state-hover: rgba(255, 255, 255, .08);
             --state-press: rgba(255, 255, 255, .12);
             --state-focus: rgba(255, 255, 255, .12);
+
+            /* ── 10 M3 COLOUR PALETTES ───────────────
+               Each palette: primary, on-primary, primary-cont, on-primary-cont,
+                             secondary-cont, on-secondary-cont,
+                             surface, surface-1, surface-2, surface-3, surface-4, surface-5,
+                             on-surface, on-surface-var, outline, outline-var,
+                             bg, tertiary-cont, on-tertiary-cont,
+                             sk-b, sk-s, shadow
+            ─────────────────────────────────────── */
+
+            /* PALETTE 0 — Emerald Green (default) */
+            --p0-primary: #1A6B3F;
+            --p0-on-primary: #FFFFFF;
+            --p0-primary-cont: #AAEFC8;
+            --p0-on-primary-cont: #002111;
+            --p0-secondary-cont: #CCE8D2;
+            --p0-on-secondary-cont: #071F0D;
+            --p0-surface: #F4FBF0;
+            --p0-surface-1: #EAF4E6;
+            --p0-surface-2: #E2EFDD;
+            --p0-surface-3: #DAEBD5;
+            --p0-surface-4: #D7E8D2;
+            --p0-surface-5: #D2E4CC;
+            --p0-on-surface: #0F1F12;
+            --p0-on-surface-var: #3D5040;
+            --p0-outline: #527558;
+            --p0-outline-var: #BCCFBE;
+            --p0-bg: #F4FBF0;
+            --p0-tc: #9CF0F2;
+            --p0-otc: #002021;
+            --p0-skb: #DCE9D8;
+            --p0-sks: #E6F0E2;
+            --p0-shadow: 0 1px 2px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .07);
+            --p0-shadow2: 0 1px 2px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .07);
+            --p0-shadow3: 0 4px 8px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .07);
+
+            /* PALETTE 1 — Ocean Blue */
+            --p1-primary: #1655A2;
+            --p1-on-primary: #FFFFFF;
+            --p1-primary-cont: #D3E4FF;
+            --p1-on-primary-cont: #001B3E;
+            --p1-secondary-cont: #D3E4FF;
+            --p1-on-secondary-cont: #001B3E;
+            --p1-surface: #F5F8FF;
+            --p1-surface-1: #EBF1FF;
+            --p1-surface-2: #E0EAFF;
+            --p1-surface-3: #D6E3FF;
+            --p1-surface-4: #D0DEFF;
+            --p1-surface-5: #CAD9FF;
+            --p1-on-surface: #101D2E;
+            --p1-on-surface-var: #3B4C64;
+            --p1-outline: #4B6082;
+            --p1-outline-var: #B8C8E8;
+            --p1-bg: #F5F8FF;
+            --p1-tc: #C8F4F4;
+            --p1-otc: #002020;
+            --p1-skb: #D5E1F5;
+            --p1-sks: #E4EDFB;
+            --p1-shadow: 0 1px 2px rgba(0, 0, 22, .12), 0 1px 3px rgba(0, 0, 22, .08);
+            --p1-shadow2: 0 1px 2px rgba(0, 0, 22, .12), 0 2px 6px rgba(0, 0, 22, .08);
+            --p1-shadow3: 0 4px 8px rgba(0, 0, 22, .12), 0 1px 3px rgba(0, 0, 22, .08);
+
+            /* PALETTE 2 — Deep Purple */
+            --p2-primary: #6A3ABF;
+            --p2-on-primary: #FFFFFF;
+            --p2-primary-cont: #E8DAFF;
+            --p2-on-primary-cont: #20005A;
+            --p2-secondary-cont: #E6D9FF;
+            --p2-on-secondary-cont: #1C0055;
+            --p2-surface: #FAF6FF;
+            --p2-surface-1: #F2ECFF;
+            --p2-surface-2: #EAE1FF;
+            --p2-surface-3: #E3DAFF;
+            --p2-surface-4: #DDD4FF;
+            --p2-surface-5: #D8CFFF;
+            --p2-on-surface: #1D1330;
+            --p2-on-surface-var: #4B3E60;
+            --p2-outline: #6B5B88;
+            --p2-outline-var: #C5B8DA;
+            --p2-bg: #FAF6FF;
+            --p2-tc: #D8F4F4;
+            --p2-otc: #001F20;
+            --p2-skb: #E0D8F5;
+            --p2-sks: #EBE5FB;
+            --p2-shadow: 0 1px 2px rgba(20, 0, 40, .12), 0 1px 3px rgba(20, 0, 40, .08);
+            --p2-shadow2: 0 1px 2px rgba(20, 0, 40, .12), 0 2px 6px rgba(20, 0, 40, .08);
+            --p2-shadow3: 0 4px 8px rgba(20, 0, 40, .12), 0 1px 3px rgba(20, 0, 40, .08);
+
+            /* PALETTE 3 — Crimson Red */
+            --p3-primary: #B52A2A;
+            --p3-on-primary: #FFFFFF;
+            --p3-primary-cont: #FFDAD6;
+            --p3-on-primary-cont: #410002;
+            --p3-secondary-cont: #FFD8D4;
+            --p3-on-secondary-cont: #3B0002;
+            --p3-surface: #FFF8F7;
+            --p3-surface-1: #FFEEEC;
+            --p3-surface-2: #FFE4E1;
+            --p3-surface-3: #FFDAD8;
+            --p3-surface-4: #FFD5D2;
+            --p3-surface-5: #FFD0CD;
+            --p3-on-surface: #261312;
+            --p3-on-surface-var: #573735;
+            --p3-outline: #845250;
+            --p3-outline-var: #E8B9B8;
+            --p3-bg: #FFF8F7;
+            --p3-tc: #FFD8CE;
+            --p3-otc: #3A0500;
+            --p3-skb: #F5DADA;
+            --p3-sks: #FCE8E8;
+            --p3-shadow: 0 1px 2px rgba(40, 0, 0, .12), 0 1px 3px rgba(40, 0, 0, .08);
+            --p3-shadow2: 0 1px 2px rgba(40, 0, 0, .12), 0 2px 6px rgba(40, 0, 0, .08);
+            --p3-shadow3: 0 4px 8px rgba(40, 0, 0, .12), 0 1px 3px rgba(40, 0, 0, .08);
+
+            /* PALETTE 4 — Amber Orange */
+            --p4-primary: #8B4D00;
+            --p4-on-primary: #FFFFFF;
+            --p4-primary-cont: #FFDDB3;
+            --p4-on-primary-cont: #2C1600;
+            --p4-secondary-cont: #FFDCB4;
+            --p4-on-secondary-cont: #281500;
+            --p4-surface: #FFF8F2;
+            --p4-surface-1: #FCEEE0;
+            --p4-surface-2: #F9E4CE;
+            --p4-surface-3: #F6DABD;
+            --p4-surface-4: #F4D5B5;
+            --p4-surface-5: #F2D0AD;
+            --p4-on-surface: #251A0C;
+            --p4-on-surface-var: #543E26;
+            --p4-outline: #7C5630;
+            --p4-outline-var: #E2C49A;
+            --p4-bg: #FFF8F2;
+            --p4-tc: #FFE0A8;
+            --p4-otc: #241A00;
+            --p4-skb: #F5E4CC;
+            --p4-sks: #FBEEDB;
+            --p4-shadow: 0 1px 2px rgba(35, 15, 0, .12), 0 1px 3px rgba(35, 15, 0, .08);
+            --p4-shadow2: 0 1px 2px rgba(35, 15, 0, .12), 0 2px 6px rgba(35, 15, 0, .08);
+            --p4-shadow3: 0 4px 8px rgba(35, 15, 0, .12), 0 1px 3px rgba(35, 15, 0, .08);
+
+            /* PALETTE 5 — Teal Cyan */
+            --p5-primary: #006874;
+            --p5-on-primary: #FFFFFF;
+            --p5-primary-cont: #97F0FF;
+            --p5-on-primary-cont: #001F24;
+            --p5-secondary-cont: #B2EBEF;
+            --p5-on-secondary-cont: #051F22;
+            --p5-surface: #F4FBFD;
+            --p5-surface-1: #E8F5F8;
+            --p5-surface-2: #DCEEF2;
+            --p5-surface-3: #D1E8EC;
+            --p5-surface-4: #CAE4E9;
+            --p5-surface-5: #C4DFE5;
+            --p5-on-surface: #0D1F22;
+            --p5-on-surface-var: #3B5054;
+            --p5-outline: #4A6D73;
+            --p5-outline-var: #B4CED3;
+            --p5-bg: #F4FBFD;
+            --p5-tc: #C5F0D4;
+            --p5-otc: #00201A;
+            --p5-skb: #D2E8EC;
+            --p5-sks: #E2F2F5;
+            --p5-shadow: 0 1px 2px rgba(0, 25, 30, .12), 0 1px 3px rgba(0, 25, 30, .08);
+            --p5-shadow2: 0 1px 2px rgba(0, 25, 30, .12), 0 2px 6px rgba(0, 25, 30, .08);
+            --p5-shadow3: 0 4px 8px rgba(0, 25, 30, .12), 0 1px 3px rgba(0, 25, 30, .08);
+
+            /* PALETTE 6 — Rose Pink */
+            --p6-primary: #9C2753;
+            --p6-on-primary: #FFFFFF;
+            --p6-primary-cont: #FFD9E3;
+            --p6-on-primary-cont: #3E001D;
+            --p6-secondary-cont: #FFD8E4;
+            --p6-on-secondary-cont: #3A001B;
+            --p6-surface: #FFF8F9;
+            --p6-surface-1: #FFECF0;
+            --p6-surface-2: #FFDFEA;
+            --p6-surface-3: #FFD3E2;
+            --p6-surface-4: #FFCEDD;
+            --p6-surface-5: #FFC9D9;
+            --p6-on-surface: #26131A;
+            --p6-on-surface-var: #5A3644;
+            --p6-outline: #825362;
+            --p6-outline-var: #E8BAC8;
+            --p6-bg: #FFF8F9;
+            --p6-tc: #FFD8EE;
+            --p6-otc: #380030;
+            --p6-skb: #F5D8E2;
+            --p6-sks: #FCE6EE;
+            --p6-shadow: 0 1px 2px rgba(40, 0, 20, .12), 0 1px 3px rgba(40, 0, 20, .08);
+            --p6-shadow2: 0 1px 2px rgba(40, 0, 20, .12), 0 2px 6px rgba(40, 0, 20, .08);
+            --p6-shadow3: 0 4px 8px rgba(40, 0, 20, .12), 0 1px 3px rgba(40, 0, 20, .08);
+
+            /* PALETTE 7 — Lime Green */
+            --p7-primary: #3A6A00;
+            --p7-on-primary: #FFFFFF;
+            --p7-primary-cont: #AFFE6B;
+            --p7-on-primary-cont: #0F2000;
+            --p7-secondary-cont: #C6EDA0;
+            --p7-on-secondary-cont: #0F2000;
+            --p7-surface: #F6FBF0;
+            --p7-surface-1: #EBF5E2;
+            --p7-surface-2: #E0EFD5;
+            --p7-surface-3: #D6E9C8;
+            --p7-surface-4: #D1E5C2;
+            --p7-surface-5: #CCE0BB;
+            --p7-on-surface: #111F00;
+            --p7-on-surface-var: #3D5020;
+            --p7-outline: #527528;
+            --p7-outline-var: #BCCF96;
+            --p7-bg: #F6FBF0;
+            --p7-tc: #B8F0A0;
+            --p7-otc: #062000;
+            --p7-skb: #D8ECC0;
+            --p7-sks: #E6F3D2;
+            --p7-shadow: 0 1px 2px rgba(10, 25, 0, .12), 0 1px 3px rgba(10, 25, 0, .08);
+            --p7-shadow2: 0 1px 2px rgba(10, 25, 0, .12), 0 2px 6px rgba(10, 25, 0, .08);
+            --p7-shadow3: 0 4px 8px rgba(10, 25, 0, .12), 0 1px 3px rgba(10, 25, 0, .08);
+
+            /* PALETTE 8 — Indigo */
+            --p8-primary: #3344A8;
+            --p8-on-primary: #FFFFFF;
+            --p8-primary-cont: #DDE1FF;
+            --p8-on-primary-cont: #00105C;
+            --p8-secondary-cont: #DBE0FF;
+            --p8-on-secondary-cont: #001055;
+            --p8-surface: #F6F7FF;
+            --p8-surface-1: #ECEEFF;
+            --p8-surface-2: #E1E4FF;
+            --p8-surface-3: #D7DAFF;
+            --p8-surface-4: #D1D5FF;
+            --p8-surface-5: #CCD0FF;
+            --p8-on-surface: #121430;
+            --p8-on-surface-var: #424775;
+            --p8-outline: #5560A4;
+            --p8-outline-var: #BEC4E8;
+            --p8-bg: #F6F7FF;
+            --p8-tc: #D8E4FF;
+            --p8-otc: #00103C;
+            --p8-skb: #D8DCFA;
+            --p8-sks: #E4E7FC;
+            --p8-shadow: 0 1px 2px rgba(0, 10, 40, .12), 0 1px 3px rgba(0, 10, 40, .08);
+            --p8-shadow2: 0 1px 2px rgba(0, 10, 40, .12), 0 2px 6px rgba(0, 10, 40, .08);
+            --p8-shadow3: 0 4px 8px rgba(0, 10, 40, .12), 0 1px 3px rgba(0, 10, 40, .08);
+
+            /* PALETTE 9 — Brown/Earth */
+            --p9-primary: #6B4226;
+            --p9-on-primary: #FFFFFF;
+            --p9-primary-cont: #FFDBC8;
+            --p9-on-primary-cont: #260E00;
+            --p9-secondary-cont: #FFDBC0;
+            --p9-on-secondary-cont: #220B00;
+            --p9-surface: #FFF8F5;
+            --p9-surface-1: #FCEEE5;
+            --p9-surface-2: #F9E3D5;
+            --p9-surface-3: #F5D9C6;
+            --p9-surface-4: #F3D4BF;
+            --p9-surface-5: #F0CFB8;
+            --p9-on-surface: #251309;
+            --p9-on-surface-var: #533528;
+            --p9-outline: #7D5442;
+            --p9-outline-var: #E2BFAF;
+            --p9-bg: #FFF8F5;
+            --p9-tc: #FFD8B8;
+            --p9-otc: #2C1400;
+            --p9-skb: #F2DACB;
+            --p9-sks: #FAE9DC;
+            --p9-shadow: 0 1px 2px rgba(35, 10, 0, .12), 0 1px 3px rgba(35, 10, 0, .08);
+            --p9-shadow2: 0 1px 2px rgba(35, 10, 0, .12), 0 2px 6px rgba(35, 10, 0, .08);
+            --p9-shadow3: 0 4px 8px rgba(35, 10, 0, .12), 0 1px 3px rgba(35, 10, 0, .08);
         }
 
-        /* Dark scheme — M3 tonal palette (emerald-green seed) */
+        /* ── ACTIVE PALETTE VARS ─────────────── */
+        [data-theme="light"] {
+            --md-primary: var(--p0-primary);
+            --md-on-primary: var(--p0-on-primary);
+            --md-primary-container: var(--p0-primary-cont);
+            --md-on-primary-cont: var(--p0-on-primary-cont);
+            --md-secondary-cont: var(--p0-secondary-cont);
+            --md-on-secondary-cont: var(--p0-on-secondary-cont);
+            --md-surface: var(--p0-surface);
+            --md-surface-1: var(--p0-surface-1);
+            --md-surface-2: var(--p0-surface-2);
+            --md-surface-3: var(--p0-surface-3);
+            --md-surface-4: var(--p0-surface-4);
+            --md-surface-5: var(--p0-surface-5);
+            --md-on-surface: var(--p0-on-surface);
+            --md-on-surface-var: var(--p0-on-surface-var);
+            --md-outline: var(--p0-outline);
+            --md-outline-var: var(--p0-outline-var);
+            --md-bg: var(--p0-bg);
+            --md-tertiary-cont: var(--p0-tc);
+            --md-on-tertiary-cont: var(--p0-otc);
+            --sk-b: var(--p0-skb);
+            --sk-s: var(--p0-sks);
+            --md-shadow: var(--p0-shadow);
+            --md-shadow-2: var(--p0-shadow2);
+            --md-shadow-3: var(--p0-shadow3);
+            --md-scrim: rgba(0, 0, 0, .42);
+            --md-inverse-surface: #243528;
+            --md-inverse-on-surf: #EAF4E6;
+        }
+
         [data-theme="dark"] {
             --md-primary: #72DBA0;
             --md-on-primary: #003920;
             --md-primary-container: #0A5230;
             --md-on-primary-cont: #A0EFBF;
-
-            --md-secondary: #A8C8AF;
-            --md-on-secondary: #1A3320;
             --md-secondary-cont: #304A37;
             --md-on-secondary-cont: #C4E4CB;
-
-            --md-tertiary: #7ED4D6;
-            --md-on-tertiary: #003739;
             --md-tertiary-cont: #004F52;
             --md-on-tertiary-cont: #A2EFF1;
-
             --md-surface: #0C1410;
             --md-surface-1: #161F19;
             --md-surface-2: #1B261E;
@@ -64,57 +354,15 @@
             --md-on-surface-var: #ADBCAF;
             --md-outline: #7A9880;
             --md-outline-var: #3A4E3D;
-            --md-inverse-surface: #DCE8DC;
-            --md-inverse-on-surf: #2A3A2C;
-
             --md-bg: #0C1410;
             --md-scrim: rgba(0, 0, 0, .65);
+            --md-inverse-surface: #DCE8DC;
+            --md-inverse-on-surf: #2A3A2C;
+            --sk-b: #161F19;
+            --sk-s: #202D23;
             --md-shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 1px 3px rgba(0, 0, 0, .18);
             --md-shadow-2: 0 1px 2px rgba(0, 0, 0, .35), 0 2px 6px rgba(0, 0, 0, .18);
             --md-shadow-3: 0 4px 8px rgba(0, 0, 0, .35), 0 1px 3px rgba(0, 0, 0, .18);
-
-            --sk-b: #161F19;
-            --sk-s: #202D23;
-        }
-
-        /* Light scheme — green seed */
-        [data-theme="light"] {
-            --md-primary: #1A6B3F;
-            --md-on-primary: #FFFFFF;
-            --md-primary-container: #AAEFC8;
-            --md-on-primary-cont: #002111;
-
-            --md-secondary: #4A6350;
-            --md-on-secondary: #FFFFFF;
-            --md-secondary-cont: #CCE8D2;
-            --md-on-secondary-cont: #071F0D;
-
-            --md-tertiary: #006B6D;
-            --md-on-tertiary: #FFFFFF;
-            --md-tertiary-cont: #9CF0F2;
-            --md-on-tertiary-cont: #002021;
-
-            --md-surface: #F4FBF0;
-            --md-surface-1: #EAF4E6;
-            --md-surface-2: #E2EFDD;
-            --md-surface-3: #DAEBD5;
-            --md-surface-4: #D7E8D2;
-            --md-surface-5: #D2E4CC;
-            --md-on-surface: #0F1F12;
-            --md-on-surface-var: #3D5040;
-            --md-outline: #527558;
-            --md-outline-var: #BCCFBE;
-            --md-inverse-surface: #243528;
-            --md-inverse-on-surf: #EAF4E6;
-
-            --md-bg: #F4FBF0;
-            --md-scrim: rgba(0, 0, 0, .42);
-            --md-shadow: 0 1px 2px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .07);
-            --md-shadow-2: 0 1px 2px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .07);
-            --md-shadow-3: 0 4px 8px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .07);
-
-            --sk-b: #DCE9D8;
-            --sk-s: #E6F0E2;
         }
 
         html,
@@ -128,7 +376,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            transition: background var(--t), color var(--t);
+            transition: background .6s ease, color .6s ease;
         }
 
         #veil {
@@ -144,6 +392,42 @@
         #veil.out {
             opacity: 1;
             pointer-events: all;
+        }
+
+        /* ── COLOUR TRANSITION — targeted smooth palette shift ─── */
+        body,
+        header,
+        nav,
+        footer,
+        .hero-card,
+        .hero-top-band,
+        .hero-desc-wrap,
+        .hero-stat-pill,
+        .design-card,
+        .card-tag,
+        .card-style-chip,
+        .card-cta,
+        .sec-count-chip,
+        .sheet-style-label,
+        .btn-filled,
+        .btn-tonal,
+        .topbar-title,
+        .hero-label,
+        .hero-title,
+        .hero-desc,
+        .nav-indicator,
+        .fab-btn,
+        .footer-text a,
+        .card-name,
+        #topbar,
+        #bnav,
+        .m3-sheet,
+        .sheet-body {
+            transition:
+                background-color 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+                color 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 1.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ── KEYFRAMES ───────────────────────── */
@@ -193,18 +477,6 @@
             }
         }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(20px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0)
-            }
-        }
-
         @keyframes ripM3 {
             to {
                 transform: scale(10);
@@ -212,108 +484,115 @@
             }
         }
 
-        /* Skeleton shimmer — wave passes left to right */
         @keyframes shimmer {
             0% {
-                background-position: -600px 0;
+                background-position: -600px 0
             }
 
             100% {
-                background-position: 600px 0;
+                background-position: 600px 0
             }
         }
 
-        /* Skeleton pulse — gentle opacity breathe */
         @keyframes skelPulse {
 
             0%,
             100% {
-                opacity: 1;
+                opacity: 1
             }
 
             50% {
-                opacity: .55;
+                opacity: .55
             }
         }
 
-        /* Hero blobs float */
         @keyframes blobFloat {
 
             0%,
             100% {
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(1)
             }
 
             50% {
-                transform: translateY(-8px) scale(1.04);
+                transform: translateY(-8px) scale(1.04)
             }
         }
 
-        /* Topbar slide down on load */
         @keyframes topbarIn {
             from {
                 transform: translateY(-100%);
-                opacity: 0;
+                opacity: 0
             }
 
             to {
                 transform: translateY(0);
-                opacity: 1;
+                opacity: 1
             }
         }
 
-        /* FAB pop in */
         @keyframes fabPop {
             0% {
                 opacity: 0;
-                transform: scale(.4) rotate(-20deg);
+                transform: scale(.4) rotate(-20deg)
             }
 
             70% {
-                transform: scale(1.12) rotate(4deg);
+                transform: scale(1.12) rotate(4deg)
             }
 
             100% {
                 opacity: 1;
-                transform: scale(1) rotate(0deg);
+                transform: scale(1) rotate(0)
             }
         }
 
-        /* Card stagger rise */
         @keyframes cardRise {
             from {
                 opacity: 0;
-                transform: translateY(24px) scale(.97);
+                transform: translateY(24px) scale(.97)
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(1)
             }
         }
 
-        /* Count chip bounce */
         @keyframes chipBounce {
 
             0%,
             100% {
-                transform: scale(1);
+                transform: scale(1)
             }
 
             40% {
-                transform: scale(1.18);
+                transform: scale(1.18)
             }
 
             60% {
-                transform: scale(.94);
+                transform: scale(.94)
             }
         }
 
-        /* ── M3 TOP APP BAR (small) ─────────────── */
+        /* Smooth palette transition on key elements */
+        @keyframes paletteFadeIn {
+            from {
+                opacity: .7
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+
+
+        /* ── TOP APP BAR ─────────────────────── */
         #topbar {
             position: fixed;
             top: 0;
             left: 0;
+            /* ✅ FIX: always full width */
             right: 0;
             z-index: 300;
             height: calc(64px + env(safe-area-inset-top, 0px));
@@ -322,7 +601,7 @@
             align-items: center;
             padding: env(safe-area-inset-top, 0px) 4px 0 4px;
             background: var(--md-surface-2);
-            transition: background var(--t), box-shadow .2s;
+            transition: background .6s ease, box-shadow .2s;
             animation: topbarIn .45s var(--ease) both;
         }
 
@@ -336,10 +615,9 @@
             height: 64px;
             display: flex;
             align-items: center;
-            padding: 0 4px 0 4px;
+            padding: 0 4px;
         }
 
-        /* Navigation icon */
         .topbar-nav-btn {
             width: 48px;
             height: 48px;
@@ -378,6 +656,7 @@
             color: var(--md-on-surface);
             letter-spacing: 0;
             padding-left: 4px;
+            transition: color .6s ease;
         }
 
         .topbar-actions {
@@ -452,17 +731,17 @@
             animation: scaleIn .5s var(--ease) .1s both;
             background: var(--md-surface-2);
             border: 1px solid var(--md-outline-var);
+            transition: background .6s ease, border-color .6s ease;
         }
 
-        /* Top gradient band */
         .hero-top-band {
             background: var(--md-primary-container);
             padding: 22px 20px 56px;
             position: relative;
             overflow: hidden;
+            transition: background .6s ease;
         }
 
-        /* Mesh blobs */
         .hero-top-band::before {
             content: '';
             position: absolute;
@@ -501,6 +780,7 @@
             position: relative;
             z-index: 1;
             animation: fadeDown .5s var(--ease) .2s both;
+            transition: color .6s ease;
         }
 
         .hero-label::before {
@@ -524,9 +804,9 @@
             position: relative;
             z-index: 1;
             animation: fadeUp .55s var(--ease) .3s both;
+            transition: color .6s ease;
         }
 
-        /* Bottom info row */
         .hero-bottom {
             padding: 14px 20px 18px;
             display: flex;
@@ -538,7 +818,6 @@
             animation: fadeUp .5s var(--ease) .45s both;
         }
 
-        /* Floating title card overlap */
         .hero-desc-wrap {
             flex: 1;
             min-width: 0;
@@ -547,6 +826,7 @@
             padding: 12px 14px;
             border: 1px solid var(--md-outline-var);
             margin-top: 0;
+            transition: background .6s ease, border-color .6s ease;
         }
 
         .hero-desc {
@@ -555,15 +835,14 @@
             line-height: 1.55;
             color: var(--md-on-surface-var);
             margin: 0;
+            transition: color .6s ease;
         }
 
-        /* Stats column */
         .hero-stats-col {
             display: flex;
             flex-direction: column;
             gap: 6px;
             flex-shrink: 0;
-            margin-top: 0;
         }
 
         .hero-stat-pill {
@@ -574,6 +853,7 @@
             border-radius: 50px;
             padding: 7px 13px 7px 10px;
             white-space: nowrap;
+            transition: background .6s ease;
         }
 
         .hero-stat-pill svg {
@@ -588,13 +868,10 @@
             font-weight: 700;
             color: var(--md-on-primary-cont);
             letter-spacing: .1px;
+            transition: color .6s ease;
         }
 
-        /* M3 chip row (kept for compat, hidden now) */
-        .hero-chips {
-            display: none;
-        }
-
+        .hero-chips,
         .m3-chip {
             display: none;
         }
@@ -626,6 +903,7 @@
             font-weight: 600;
             display: flex;
             align-items: center;
+            transition: background .6s ease, color .6s ease;
         }
 
         /* ── CARD LIST ───────────────────────── */
@@ -648,29 +926,23 @@
         }
 
         .skel-item:nth-child(1) {
-            animation-delay: .05s;
+            animation-delay: .05s
         }
 
         .skel-item:nth-child(2) {
-            animation-delay: .12s;
+            animation-delay: .12s
         }
 
         .skel-item:nth-child(3) {
-            animation-delay: .19s;
+            animation-delay: .19s
         }
 
         .skel-item:nth-child(4) {
-            animation-delay: .26s;
+            animation-delay: .26s
         }
 
-        /* shimmer wave */
         .sk {
-            background: linear-gradient(90deg,
-                    var(--sk-b) 0%,
-                    var(--sk-b) 20%,
-                    var(--sk-s) 50%,
-                    var(--sk-b) 80%,
-                    var(--sk-b) 100%);
+            background: linear-gradient(90deg, var(--sk-b) 0%, var(--sk-b) 20%, var(--sk-s) 50%, var(--sk-b) 80%, var(--sk-b) 100%);
             background-size: 600px 100%;
             animation: shimmer 1.8s ease-in-out infinite;
             border-radius: 4px;
@@ -678,14 +950,11 @@
             overflow: hidden;
         }
 
-        /* Glint highlight on top of shimmer */
         .sk::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg,
-                    rgba(255, 255, 255, .08) 0%,
-                    transparent 60%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -722,24 +991,23 @@
             border-radius: 8px;
         }
 
-        /* Stagger shimmer delay per item */
         .skel-item:nth-child(1) .sk {
-            animation-delay: 0s;
+            animation-delay: 0s
         }
 
         .skel-item:nth-child(2) .sk {
-            animation-delay: .18s;
+            animation-delay: .18s
         }
 
         .skel-item:nth-child(3) .sk {
-            animation-delay: .36s;
+            animation-delay: .36s
         }
 
         .skel-item:nth-child(4) .sk {
-            animation-delay: .54s;
+            animation-delay: .54s
         }
 
-        /* ── DESIGN CARD (M3 "filled tonal" card) ── */
+        /* ── DESIGN CARD ─────────────────────── */
         .design-card {
             display: flex;
             align-items: stretch;
@@ -749,12 +1017,11 @@
             cursor: pointer;
             position: relative;
             -webkit-tap-highlight-color: transparent;
-            transition: background var(--t);
+            transition: background .6s ease;
             min-height: 104px;
             box-shadow: var(--md-shadow);
         }
 
-        /* State layer */
         .card-state {
             position: absolute;
             inset: 0;
@@ -770,7 +1037,6 @@
             opacity: .12;
         }
 
-        /* Ripple */
         .card-rpl {
             position: absolute;
             inset: 0;
@@ -792,7 +1058,6 @@
             animation: ripM3 .5s var(--ease) forwards;
         }
 
-        /* THUMBNAIL */
         .card-thumb {
             width: 104px;
             flex-shrink: 0;
@@ -825,7 +1090,6 @@
             opacity: .5;
         }
 
-        /* Badge on thumbnail */
         .card-badge {
             position: absolute;
             top: 8px;
@@ -850,7 +1114,6 @@
             color: var(--md-on-primary-cont);
         }
 
-        /* CARD CONTENT */
         .card-content {
             flex: 1;
             min-width: 0;
@@ -874,6 +1137,7 @@
             font-weight: 600;
             letter-spacing: .4px;
             color: var(--md-primary);
+            transition: color .6s ease;
         }
 
         .card-style-chip {
@@ -883,6 +1147,7 @@
             background: var(--md-secondary-cont);
             padding: 2px 8px;
             border-radius: 6px;
+            transition: background .6s ease, color .6s ease;
         }
 
         .card-name {
@@ -898,7 +1163,6 @@
             text-overflow: ellipsis;
         }
 
-        /* M3 filled tonal button */
         .card-cta {
             display: inline-flex;
             align-items: center;
@@ -914,7 +1178,7 @@
             letter-spacing: .3px;
             color: var(--md-on-primary-cont);
             -webkit-tap-highlight-color: transparent;
-            transition: all .2s;
+            transition: all .3s ease;
             width: fit-content;
         }
 
@@ -928,7 +1192,7 @@
             transform: scale(.96);
         }
 
-        /* ── M3 BOTTOM SHEET ─────────────────── */
+        /* ── BOTTOM SHEET ─────────────────────── */
         .sheet-scrim {
             position: fixed;
             inset: 0;
@@ -961,7 +1225,6 @@
             transform: translateY(0);
         }
 
-        /* Drag handle */
         .sheet-handle {
             display: flex;
             justify-content: center;
@@ -976,9 +1239,8 @@
             background: var(--md-outline-var);
         }
 
-        /* Sheet preview */
         .sheet-img {
-            width: 100%;
+            width: calc(100% - 32px);
             height: 56vw;
             max-height: 300px;
             min-height: 180px;
@@ -986,7 +1248,6 @@
             background: var(--md-surface-3);
             border-radius: 16px;
             margin: 0 16px;
-            width: calc(100% - 32px);
             position: relative;
         }
 
@@ -1023,7 +1284,6 @@
             text-transform: uppercase;
         }
 
-        /* Sheet close */
         .sheet-close {
             position: absolute;
             top: 16px;
@@ -1052,12 +1312,10 @@
             height: 18px;
         }
 
-        /* Sheet body */
         .sheet-body {
             padding: 20px 20px 0;
         }
 
-        /* M3 headline + supporting */
         .sheet-headline {
             font-family: 'Syne', sans-serif;
             font-size: 24px;
@@ -1086,9 +1344,9 @@
             font-size: 12px;
             font-weight: 600;
             margin-bottom: 20px;
+            transition: background .6s ease, color .6s ease;
         }
 
-        /* Sheet actions */
         .sheet-actions {
             display: flex;
             flex-direction: column;
@@ -1096,7 +1354,6 @@
             padding-bottom: 16px;
         }
 
-        /* M3 filled button */
         .btn-filled {
             width: 100%;
             height: 56px;
@@ -1115,7 +1372,7 @@
             gap: 8px;
             text-decoration: none;
             -webkit-tap-highlight-color: transparent;
-            transition: all .2s;
+            transition: background .6s ease, color .6s ease;
             box-shadow: var(--md-shadow-2);
             position: relative;
             overflow: hidden;
@@ -1138,7 +1395,6 @@
             height: 18px;
         }
 
-        /* M3 tonal button */
         .btn-tonal {
             width: 100%;
             height: 48px;
@@ -1150,24 +1406,25 @@
             font-size: 14px;
             font-weight: 600;
             -webkit-tap-highlight-color: transparent;
-            transition: all .2s;
+            transition: background .6s ease, color .6s ease;
         }
 
         .btn-tonal:active {
             filter: brightness(.9);
         }
 
-        /* ── M3 BOTTOM NAV ───────────────────── */
+        /* ── BOTTOM NAV ──────────────────────── */
         #bnav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 400;
+            /* ✅ FIX: full width */
             padding-bottom: env(safe-area-inset-bottom, 0px);
             background: var(--md-surface-2);
             border-top: 1px solid var(--md-outline-var);
-            transition: background var(--t);
+            transition: background .6s ease, border-color .6s ease;
         }
 
         .bnav-row {
@@ -1189,7 +1446,6 @@
             position: relative;
         }
 
-        /* M3 nav indicator pill */
         .nav-indicator {
             width: 64px;
             height: 32px;
@@ -1199,7 +1455,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            transition: background .2s;
+            transition: background .3s;
         }
 
         .nav-item.active .nav-indicator {
@@ -1210,7 +1466,7 @@
             width: 24px;
             height: 24px;
             color: var(--md-on-surface-var);
-            transition: color .2s;
+            transition: color .3s;
         }
 
         .nav-item.active .nav-indicator svg {
@@ -1222,7 +1478,7 @@
             font-weight: 600;
             color: var(--md-on-surface-var);
             letter-spacing: .4px;
-            transition: color .2s, font-weight .2s;
+            transition: color .3s, font-weight .2s;
         }
 
         .nav-item.active .nav-label {
@@ -1250,7 +1506,7 @@
             justify-content: center;
             box-shadow: var(--md-shadow-3);
             -webkit-tap-highlight-color: transparent;
-            transition: all .2s var(--spring);
+            transition: background .6s ease;
             color: var(--md-on-primary-cont);
             animation: fabPop .6s var(--spring) .7s both;
         }
@@ -1285,6 +1541,7 @@
             color: var(--md-primary);
             text-decoration: none;
             font-weight: 600;
+            transition: color .6s ease;
         }
 
         .footer-icons {
@@ -1317,13 +1574,14 @@
             height: 20px;
         }
 
-        /* TABLET (560px–899px) — centered narrow column */
-        @media (min-width: 560px) and (max-width: 899px) {
+        /* ── TABLET ──────────────────────────── */
+        @media (min-width:560px) and (max-width:899px) {
             .root {
                 max-width: 480px;
                 margin: 0 auto;
             }
 
+            /* ✅ FIX: topbar spans full screen, inner content centered */
             #topbar {
                 left: 0;
                 right: 0;
@@ -1331,12 +1589,23 @@
                 transform: none;
             }
 
+            .topbar-inner {
+                max-width: 480px;
+                margin: 0 auto;
+                padding: 0 4px;
+            }
+
+            /* ✅ FIX: bnav spans full screen, inner content centered */
             #bnav {
-                
-                left: 50%;
-                transform: translateX(-50%);
-                right: auto;
-                width: 100%;
+                left: 0;
+                right: 0;
+                max-width: none;
+                transform: none;
+            }
+
+            .bnav-row {
+                max-width: 480px;
+                margin: 0 auto;
             }
 
             #fab {
@@ -1361,12 +1630,12 @@
             .sheet-scrim.open .m3-sheet {
                 transform: translateX(-50%) translateY(0);
             }
+
+
         }
 
-        /* DESKTOP (900px+) — full sidebar + content layout */
-        @media (min-width: 900px) {
-
-            /* Hide mobile bottom nav & FAB */
+        /* ── DESKTOP ─────────────────────────── */
+        @media (min-width:900px) {
             #bnav {
                 display: none;
             }
@@ -1375,7 +1644,7 @@
                 display: none;
             }
 
-            /* Topbar spans full width, taller */
+
             #topbar {
                 max-width: none;
                 left: 0;
@@ -1388,39 +1657,35 @@
             .topbar-inner {
                 max-width: 1200px;
                 margin: 0 auto;
-                padding: 0 0;
+                padding: 0;
             }
 
             .topbar-title {
                 font-size: 20px;
             }
 
-            /* Root: no bottom-nav padding, full viewport */
             .root {
-                max-width: none;
+                max-width: 1200px;
                 padding-top: calc(68px + env(safe-area-inset-top, 0px));
                 padding-bottom: 40px;
                 display: grid;
                 grid-template-columns: 340px 1fr;
                 grid-template-rows: auto auto 1fr auto;
                 column-gap: 28px;
-                max-width: 1200px;
                 margin: 0 auto;
                 padding-left: 32px;
                 padding-right: 32px;
             }
 
-            /* Hero card — left column, spans rows 1 & 2 */
             .hero-card {
                 grid-column: 1;
-                grid-row: 1 / 3;
+                grid-row: 1/3;
                 margin: 24px 0 0 0;
                 align-self: start;
                 position: sticky;
                 top: calc(68px + env(safe-area-inset-top, 0px) + 16px);
             }
 
-            /* Bigger hero text on desktop */
             .hero-title {
                 font-size: 38px;
                 letter-spacing: -1px;
@@ -1430,7 +1695,6 @@
                 padding: 28px 24px 64px;
             }
 
-            /* Section header — right column row 1 */
             .sec-header {
                 grid-column: 2;
                 grid-row: 1;
@@ -1438,7 +1702,6 @@
                 align-self: end;
             }
 
-            /* Card list — right column row 2 (fills remaining height) */
             .card-list {
                 grid-column: 2;
                 grid-row: 2;
@@ -1449,7 +1712,6 @@
                 align-content: start;
             }
 
-            /* Cards become vertical (stack thumb on top) in grid */
             .design-card {
                 flex-direction: column;
                 min-height: 220px;
@@ -1471,7 +1733,6 @@
                 white-space: normal;
             }
 
-            /* Skeleton also grid */
             #skel-box {
                 grid-column: 2;
                 grid-row: 2;
@@ -1491,14 +1752,12 @@
                 height: 140px;
             }
 
-            /* Footer — full width, row 3 */
             .footer {
-                grid-column: 1 / -1;
+                grid-column: 1/-1;
                 grid-row: 3;
                 margin: 20px 0 0 0;
             }
 
-            /* Bottom sheet as centered modal dialog on desktop */
             .sheet-scrim {
                 display: flex;
                 align-items: center;
@@ -1535,8 +1794,7 @@
             }
         }
 
-        /* WIDE DESKTOP (1280px+) */
-        @media (min-width: 1280px) {
+        @media (min-width:1280px) {
             .root {
                 max-width: 1320px;
             }
@@ -1688,7 +1946,6 @@
                 </a>
             </div>
         </footer>
-
     </div>
 
     <!-- FAB -->
@@ -1737,6 +1994,8 @@
         </div>
     </nav>
 
+
+
     <!-- BOTTOM SHEET -->
     <div class="sheet-scrim" id="scrim">
         <div class="m3-sheet" id="sheetEl">
@@ -1779,21 +2038,79 @@
     <script>
         const html = document.documentElement;
 
-        /* Theme */
+        /* ── 10 COLOUR PALETTES ──────────────────── */
+        const PALETTES = [
+            { name: 'Emerald', pip: '#1A6B3F', keys: ['primary', 'on-primary', 'primary-cont', 'on-primary-cont', 'secondary-cont', 'on-secondary-cont', 'surface', 'surface-1', 'surface-2', 'surface-3', 'surface-4', 'surface-5', 'on-surface', 'on-surface-var', 'outline', 'outline-var', 'bg', 'tc', 'otc', 'skb', 'sks', 'shadow', 'shadow2', 'shadow3'] },
+            { name: 'Ocean', pip: '#1655A2' },
+            { name: 'Purple', pip: '#6A3ABF' },
+            { name: 'Crimson', pip: '#B52A2A' },
+            { name: 'Amber', pip: '#8B4D00' },
+            { name: 'Teal', pip: '#006874' },
+            { name: 'Rose', pip: '#9C2753' },
+            { name: 'Lime', pip: '#3A6A00' },
+            { name: 'Indigo', pip: '#3344A8' },
+            { name: 'Earth', pip: '#6B4226' },
+        ];
+
+        const PALETTE_NAMES = ['Emerald', 'Ocean', 'Purple', 'Crimson', 'Amber', 'Teal', 'Rose', 'Lime', 'Indigo', 'Earth'];
+        const PIP_COLOURS = ['#1A6B3F', '#1655A2', '#6A3ABF', '#B52A2A', '#8B4D00', '#006874', '#9C2753', '#3A6A00', '#3344A8', '#6B4226'];
+
+        /* CSS var suffix map for each palette index */
+        const VAR_KEYS = [
+            'primary', 'on-primary', 'primary-cont', 'on-primary-cont',
+            'secondary-cont', 'on-secondary-cont',
+            'surface', 'surface-1', 'surface-2', 'surface-3', 'surface-4', 'surface-5',
+            'on-surface', 'on-surface-var', 'outline', 'outline-var',
+            'bg', 'tc', 'otc', 'skb', 'sks',
+            'shadow', 'shadow2', 'shadow3'
+        ];
+        const MD_PROPS = [
+            '--md-primary', '--md-on-primary', '--md-primary-container', '--md-on-primary-cont',
+            '--md-secondary-cont', '--md-on-secondary-cont',
+            '--md-surface', '--md-surface-1', '--md-surface-2', '--md-surface-3', '--md-surface-4', '--md-surface-5',
+            '--md-on-surface', '--md-on-surface-var', '--md-outline', '--md-outline-var',
+            '--md-bg', '--md-tertiary-cont', '--md-on-tertiary-cont', '--sk-b', '--sk-s',
+            '--md-shadow', '--md-shadow-2', '--md-shadow-3'
+        ];
+        const PREFIX = ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9'];
+        const SUFFIX = ['primary', 'on-primary', 'primary-cont', 'on-primary-cont', 'secondary-cont', 'on-secondary-cont', 'surface', 'surface-1', 'surface-2', 'surface-3', 'surface-4', 'surface-5', 'on-surface', 'on-surface-var', 'outline', 'outline-var', 'bg', 'tc', 'otc', 'skb', 'sks', 'shadow', 'shadow2', 'shadow3'];
+
+        let currentPalette = 0;
+
+        function applyPalette(idx) {
+            if (html.getAttribute('data-theme') === 'dark') return;
+            const p = PREFIX[idx];
+            MD_PROPS.forEach((prop, i) => {
+                const val = getComputedStyle(html).getPropertyValue(`--${p}-${SUFFIX[i]}`).trim();
+                if (val) html.style.setProperty(prop, val);
+            });
+            currentPalette = idx;
+        }
+
+
+        /* ── THEME TOGGLE ────────────────────────── */
         document.getElementById('themeBtn').addEventListener('click', () => {
-            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                // light mode — re-apply current palette
+                html.setAttribute('data-theme', 'light');
+                setTimeout(() => applyPalette(currentPalette), 20);
+            } else {
+                // dark mode — remove inline overrides so [data-theme="dark"] CSS wins
+                MD_PROPS.forEach(prop => html.style.removeProperty(prop));
+                html.setAttribute('data-theme', 'dark');
+            }
         });
 
-        /* Scroll → topbar elevation */
         window.addEventListener('scroll', () => {
             document.getElementById('topbar').classList.toggle('scrolled', scrollY > 4);
         }, { passive: true });
 
-        /* Veil */
+        /* ── VEIL ────────────────────────────────── */
         const veil = document.getElementById('veil');
         function goTo(href) { veil.classList.add('out'); setTimeout(() => location.href = href, 240); }
 
-        /* Ripple */
+        /* ── RIPPLE ──────────────────────────────── */
         function ripple(card, e) {
             const l = card.querySelector('.card-rpl'); if (!l) return;
             const d = document.createElement('span'); d.className = 'rpl-c';
@@ -1802,7 +2119,15 @@
             l.appendChild(d); d.addEventListener('animationend', () => d.remove());
         }
 
-        /* Data */
+
+
+
+        /* Auto-cycle every 4 seconds — smooth drift */
+        setInterval(() => {
+            applyPalette((currentPalette + 1) % 10);
+        }, 5000);
+
+        /* ── DATA ────────────────────────────────── */
         const DESIGNS = [
             { id: 'style1', name: 'North Western University', preview: 'designs/style1/preview.png', badge: 'popular' },
             { id: 'style2', name: 'North Western University', preview: 'designs/style2/preview.png', badge: 'recommended' },
@@ -1815,7 +2140,7 @@
         document.getElementById('chip-count').textContent = DESIGNS.length + ' Templates';
         document.getElementById('count-chip').textContent = DESIGNS.length + ' available';
 
-        /* Sheet */
+        /* ── SHEET ───────────────────────────────── */
         const scrim = document.getElementById('scrim');
         const sheetEl = document.getElementById('sheetEl');
         const sheetImg = document.getElementById('sheetImg');
@@ -1829,42 +2154,26 @@
             sheetLabel.textContent = 'Template 0' + (i + 1);
             sheetTitle.textContent = d.name;
             sheetUse.href = 'form.html?design=' + d.id + (sP ? '&s=' + sP : '');
-
             if (prevImg) { prevImg.remove(); prevImg = null; }
             sheetPh.style.display = 'flex';
-
             if (d.preview) {
                 prevImg = document.createElement('img');
                 prevImg.src = d.preview; prevImg.alt = d.name;
                 prevImg.onload = () => { sheetPh.style.display = 'none'; prevImg.style.display = 'block'; };
                 sheetImg.appendChild(prevImg);
             }
-
             scrim.classList.add('open');
             document.body.style.overflow = 'hidden';
-
-            /* Drag dismiss */
             let sy = 0, cy = 0, active = false;
             const ts = e => { sy = e.touches[0].clientY; cy = 0; active = true; sheetEl.style.transition = 'none'; };
-            const tm = e => {
-                if (!active) return;
-                cy = Math.max(0, e.touches[0].clientY - sy);
-                sheetEl.style.transform = `translateY(${cy}px)`;
-                if (e.cancelable) e.preventDefault();
-            };
-            const te = () => {
-                if (!active) return; active = false; sheetEl.style.transition = '';
-                cy > 80 ? (close(), sheetEl.style.transform = '') : (sheetEl.style.transform = '');
-            };
+            const tm = e => { if (!active) return; cy = Math.max(0, e.touches[0].clientY - sy); sheetEl.style.transform = `translateY(${cy}px)`; if (e.cancelable) e.preventDefault(); };
+            const te = () => { if (!active) return; active = false; sheetEl.style.transition = ''; cy > 80 ? (close(), sheetEl.style.transform = '') : (sheetEl.style.transform = ''); };
             sheetEl.addEventListener('touchstart', ts, { passive: true });
             sheetEl.addEventListener('touchmove', tm, { passive: false });
             sheetEl.addEventListener('touchend', te);
         }
 
-        function close() {
-            scrim.classList.remove('open');
-            document.body.style.overflow = '';
-        }
+        function close() { scrim.classList.remove('open'); document.body.style.overflow = ''; }
 
         document.getElementById('sheetClose').addEventListener('click', close);
         document.getElementById('sheetCancel').addEventListener('click', close);
@@ -1872,7 +2181,7 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
         sheetUse.addEventListener('click', e => { e.preventDefault(); close(); setTimeout(() => goTo(sheetUse.href), 200); });
 
-        /* Render cards */
+        /* ── RENDER CARDS ────────────────────────── */
         const cardsEl = document.getElementById('cards');
         const skelBox = document.getElementById('skel-box');
 
@@ -1882,12 +2191,9 @@
             DESIGNS.forEach((d, i) => {
                 const wrap = document.createElement('div');
                 wrap.style.animation = `cardRise .5s cubic-bezier(0.2,0,0,1) ${i * .1}s both`;
-
                 const card = document.createElement('div');
                 card.className = 'design-card';
                 card.innerHTML = `<div class="card-state"></div><div class="card-rpl"></div>`;
-
-                /* Thumb */
                 const thumb = document.createElement('div'); thumb.className = 'card-thumb';
                 if (d.preview) {
                     const img = document.createElement('img');
@@ -1895,38 +2201,29 @@
                     img.onerror = () => { thumb.innerHTML = PH_INNER; };
                     thumb.appendChild(img);
                 } else { thumb.innerHTML = PH_INNER; }
-
                 if (d.badge) {
                     const b = document.createElement('div');
-                    b.className = 'card-badge b-' + d.badge;
-                    b.textContent = BADGE[d.badge];
+                    b.className = 'card-badge b-' + d.badge; b.textContent = BADGE[d.badge];
                     thumb.appendChild(b);
                 }
-
-                /* Content */
                 const content = document.createElement('div'); content.className = 'card-content';
                 content.innerHTML = `
-        <div>
-          <div class="card-top">
-            <span class="card-tag">Cover Design</span>
-            <span class="card-style-chip">0${i + 1}</span>
-          </div>
-          <div class="card-name">${d.name}</div>
-        </div>
-        <button class="card-cta">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-          Preview
-        </button>`;
-
-                card.appendChild(thumb);
-                card.appendChild(content);
-
+                <div>
+                    <div class="card-top">
+                        <span class="card-tag">Cover Design</span>
+                        <span class="card-style-chip">0${i + 1}</span>
+                    </div>
+                    <div class="card-name">${d.name}</div>
+                </div>
+                <button class="card-cta">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Preview
+                </button>`;
+                card.appendChild(thumb); card.appendChild(content);
                 card.addEventListener('click', e => { ripple(card, e); openSheet(d, i); });
                 card.setAttribute('role', 'button'); card.setAttribute('tabindex', '0');
                 card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet(d, i); } });
-
-                wrap.appendChild(card);
-                cardsEl.appendChild(wrap);
+                wrap.appendChild(card); cardsEl.appendChild(wrap);
             });
 
             skelBox.style.transition = 'opacity .28s';
@@ -1934,7 +2231,6 @@
             setTimeout(() => {
                 skelBox.remove();
                 cardsEl.style.display = '';
-                /* bounce the count chip once cards appear */
                 const chip = document.getElementById('count-chip');
                 if (chip) { chip.style.animation = 'chipBounce .5s var(--spring) both'; }
             }, 280);
